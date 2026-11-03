@@ -1,5 +1,4 @@
 import { describe, it, beforeEach, vi, expect, type Mocked } from 'vitest';
-import { describe, it, beforeEach, vi, type Mocked } from 'vitest';
 import { Test, type TestingModule } from '@nestjs/testing';
 import { OrdersService } from './orders.service.js';
 import { ORDERS_REPOSITORY, type OrdersRepository } from '../repositories/orders.repository.interface.js';

@@ -1,7 +1,24 @@
 import { Module } from '@nestjs/common';
-import { OrdersModule } from './modules/orders/orders.module.js';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// O caminho correto aponta para dentro da pasta 'app'
+import { AppController } from './app/app.controller';
+import { AppService } from './app/app.service';
 
 @Module({
-  imports: [OrdersModule],
+  imports: [
+    TypeOrmModule.forRoot({
+        type: 'postgres',
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_PORT),
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        autoLoadEntities: true,
+        synchronize: false,
+    }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

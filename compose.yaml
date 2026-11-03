@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: celilac-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: autoflow_user
+      POSTGRES_PASSWORD: autoflow_password
+      POSTGRES_DB: autoflow_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - autoflow_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U autoflow_user -d autoflow_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  autoflow_postgres_data:

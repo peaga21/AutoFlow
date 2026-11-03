@@ -5,7 +5,7 @@ import { OrderNotFoundException } from '../../../common/exceptions/order-not-fou
 import { PaymentNotFoundException } from '../../../common/exceptions/payment-not-found.exception.js';
 import { PaymentNotApprovedException } from '../../../common/exceptions/payment-not-approved.exception.js';
 import { PaymentStatus } from '../../../common/enums/payment-status.enum.js';
-import { ConfirmOrderResponseDto } from '../dto/confirm-order-response.dto.js';
+import { ConfirmOrderResponseDto } from '../dtos/confirm-order-response.dto.js';
 
 @Injectable()
 export class OrdersService {
