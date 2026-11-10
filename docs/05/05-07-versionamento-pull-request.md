@@ -3,6 +3,7 @@
 ## 1. Identificação do Commit da Fase GREEN
 
 * **Branch de Trabalho:** `feat/sub-01-domain-part`
+* **Hash do Commit:** `32d2a9c` (`32d2a9cc0e8e60b7d03a11986c7585f67fa4e861`)
 * **Padrão Semântico:** *Conventional Commits*
 * **Mensagem do Commit:** `feat(parts): implement minimal Part.create for GREEN test (ref #6)`
 * **Issue Vinculada:** [#6 — [SUB-01] feat(domain): modelar entidade Part e regras de negócio](https://github.com/peaga21/AutoFlow/issues/6)
@@ -52,6 +53,11 @@ index 31ed2be..3f9deb5 100644
 * **Comando Executado:**
   ```bash
   git push origin feat/sub-01-domain-part
+  ```
+* **Saída Autêntica do Terminal:**
+  ```text
+  To https://github.com/peaga21/AutoFlow.git
+     0e9d652..32d2a9c  feat/sub-01-domain-part -> feat/sub-01-domain-part
   ```
 * **Status do Upstream:** Sincronizado com `origin/feat/sub-01-domain-part`.
 * **Políticas de Branch:** A branch principal (`main`) permanece intocada, aguardando as fases subsequentes.

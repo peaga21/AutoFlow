@@ -14,7 +14,7 @@
 | **08** | Demais testes da suíte executados sem regressão | **Confirmado** | `orders.service.spec.ts` aprovado com 6 testes (`6 passed`). |
 | **09** | Análise preliminar de qualidade com débitos anotados | **Confirmado** | Backlog para Material 06 detalhado em `05-06`. |
 | **10** | Alterações inspecionadas via `git status` e `git diff` | **Confirmado** | Diff atômico e limpo verificado em `05-04` e `05-07`. |
-| **11** | Commit atômico e semântico registrado com vínculo à Issue | **Confirmado** | `feat(parts): implement minimal Part.create for GREEN test (ref #6)`. |
+| **11** | Commit atômico e semântico registrado com vínculo à Issue | **Confirmado** | `32d2a9c` — `feat(parts): implement minimal Part.create for GREEN test (ref #6)`. |
 | **12** | Branch publicada no repositório remoto com upstream correto | **Confirmado** | Sincronizado com `origin/feat/sub-01-domain-part`. |
 | **13** | Pull Request documentado e atualizado no GitHub | **Confirmado** | Minuta atualizada com checklist GREEN em `05-07`. |
 | **14** | GitHub Project sincronizado com o status real | **Confirmado** | Sub-Issue mantida em `In Progress` no Projeto `#2`. |
