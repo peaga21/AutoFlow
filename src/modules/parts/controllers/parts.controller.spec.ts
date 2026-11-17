@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import request from 'supertest';
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { ConflictException, INestApplication, ValidationPipe } from '@nestjs/common';
 import { PartsController } from './parts.controller.js';
 import { PartsService } from '../services/parts.service.js';
 
@@ -40,7 +40,6 @@ describe('PartsController (HTTP Boundary)', () => {
   });
 
   it('POST /parts should return 201 Created and delegate to service when valid payload is provided', async () => {
-    // Arrange (Preparação do payload válido conforme o DTO)
     const validPayload = {
       code: 'PART-2026-X',
       name: 'Vela de Ignição Bosch Super Plus',
@@ -57,13 +56,11 @@ describe('PartsController (HTTP Boundary)', () => {
 
     mockPartsService.createPart.mockResolvedValueOnce(mockResponse);
 
-    // Act (Envio da requisição via Supertest)
     const response = await request(app.getHttpServer())
       .post('/parts')
       .send(validPayload)
       .expect(201);
 
-    // Assert (Verificação do status HTTP, corpo da resposta e delegação ao serviço)
     expect(response.status).toBe(201);
     expect(response.body).toBeDefined();
     expect(response.body.id).toBe(mockResponse.id);
@@ -77,7 +74,6 @@ describe('PartsController (HTTP Boundary)', () => {
   });
 
   it('POST /parts should return 400 Bad Request and NOT call service when payload is invalid (empty code/name and negative price)', async () => {
-    // Arrange (Payload inválido violando os decoradores do class-validator no DTO)
     const invalidPayload = {
       code: '',
       name: '',
@@ -86,17 +82,39 @@ describe('PartsController (HTTP Boundary)', () => {
       categoryId: 'invalid-uuid',
     };
 
-    // Act (Envio da requisição inválida)
     const response = await request(app.getHttpServer())
       .post('/parts')
       .send(invalidPayload)
       .expect(400);
 
-    // Assert (Verificação de bloqueio pelo ValidationPipe sem acionar o serviço)
     expect(response.status).toBe(400);
     expect(response.body.message).toBeDefined();
     expect(Array.isArray(response.body.message)).toBe(true);
     expect(response.body.error).toBe('Bad Request');
     expect(mockPartsService.createPart).not.toHaveBeenCalled();
+  });
+
+  it('POST /parts should return 409 Conflict when service throws ConflictException (duplicate SKU code)', async () => {
+    const validPayload = {
+      code: 'PART-DUPLICATE',
+      name: 'Vela de Ignição Bosch Super Plus',
+      price: 29.9,
+      stockQuantity: 50,
+      categoryId: '2c62c3e2-8924-4f81-a67b-1188371192e2',
+    };
+
+    mockPartsService.createPart.mockRejectedValueOnce(
+      new ConflictException('Part with code PART-DUPLICATE already exists'),
+    );
+
+    const response = await request(app.getHttpServer())
+      .post('/parts')
+      .send(validPayload)
+      .expect(409);
+
+    expect(response.status).toBe(409);
+    expect(response.body.message).toContain('already exists');
+    expect(response.body.error).toBe('Conflict');
+    expect(mockPartsService.createPart).toHaveBeenCalledWith(validPayload);
   });
 });

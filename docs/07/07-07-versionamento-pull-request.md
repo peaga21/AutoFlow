@@ -24,7 +24,9 @@ main
 ```
 
 * **Commits Herdados da Branch-Base:** `32d2a9c`, `9a7984e`, `74fe127`
-* **Commits Exclusivos Desta Etapa:** Commit da implementação HTTP, DTOs, módulos e documentação 07.
+* **Commit Exclusivo Desta Etapa:** `308d8dd` (`feat(parts): implement HTTP boundary POST /parts with validation and tests (ref #10)`)
+* **Confirmação do Push Remoto:** `feat/sub-05-http-endpoint -> origin/feat/sub-05-http-endpoint`
+* **URL de Abertura do PR:** [https://github.com/peaga21/AutoFlow/pull/new/feat/sub-05-http-endpoint](https://github.com/peaga21/AutoFlow/pull/new/feat/sub-05-http-endpoint)
 
 ---
 

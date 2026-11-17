@@ -27,6 +27,14 @@
   * `Array.isArray(response.body.message) === true`;
   * `expect(mockPartsService.createPart).not.toHaveBeenCalled()`.
 
+### 2.3. Teste 3 — Tratamento de Conflito de SKU (`POST /parts` ➔ `409 Conflict`)
+* **Objetivo:** Garantir que exceções de conflito lançadas pelo serviço de aplicação (`ConflictException` ao detectar SKU já cadastrado) sejam adequadamente traduzidas pelo pipeline do NestJS para o código de status HTTP `409 Conflict`.
+* **Asserções Realizadas:**
+  * Status code `409`;
+  * `response.body.error === 'Conflict'`;
+  * `response.body.message` contendo mensagem explicativa do conflito;
+  * `expect(mockPartsService.createPart).toHaveBeenCalledWith(validPayload)`.
+
 ---
 
 ## 3. Código-Fonte Completo dos Testes HTTP
@@ -144,13 +152,13 @@ Saída real do terminal:
 ```text
  RUN  v3.2.7 C:/Users/pedro/.vscode/AutoFlow
 
- ✓ src/modules/parts/controllers/parts.controller.spec.ts (2 tests) 357ms
-   ✓ PartsController (HTTP Boundary) > POST /parts should return 201 Created and delegate to service when valid payload is provided  343ms
+ ✓ src/modules/parts/controllers/parts.controller.spec.ts (3 tests) 367ms
+   ✓ PartsController (HTTP Boundary) > POST /parts should return 201 Created and delegate to service when valid payload is provided  345ms
 
  Test Files  1 passed (1)
-      Tests  2 passed (2)
-   Start at  14:03:44
-   Duration  2.53s (transform 114ms, setup 0ms, collect 1.45s, tests 357ms, environment 0ms, prepare 294ms)
+      Tests  3 passed (3)
+   Start at  14:13:47
+   Duration  2.53s (transform 111ms, setup 0ms, collect 1.47s, tests 367ms, environment 0ms, prepare 257ms)
 ```
 
 ### 4.2. Execução dos Testes do Serviço de Aplicação
@@ -213,8 +221,8 @@ Saída real do terminal:
 
 | Arquivo de Teste | Camada | Qtd Testes | Status | Regressão? |
 | :--- | :--- | :---: | :---: | :---: |
-| `parts.controller.spec.ts` | Fronteira HTTP | 2 | ✅ **2 passed** | Nenhuma (Novo) |
+| `parts.controller.spec.ts` | Fronteira HTTP | 3 | ✅ **3 passed** | Nenhuma (Novo) |
 | `parts.service.spec.ts` | Aplicação | 2 | ✅ **2 passed** | Nenhuma (Novo) |
 | `part.entity.spec.ts` | Domínio Puro | 1 | ✅ **1 passed** | Nenhuma (Preservado) |
 | `orders.service.spec.ts` | Regressão Geral | 6 | ✅ **6 passed** | Nenhuma (Preservado) |
-| **Total Geral** | — | **11** | ✅ **11 passed (100%)** | **Zero regressões** |
+| **Total Geral** | — | **12** | ✅ **12 passed (100%)** | **Zero regressões** |

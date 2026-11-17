@@ -31,10 +31,10 @@
 | **25** | Teste HTTP para cenário inválido implementado (Refinamento 3) | **Confirmado** | `parts.controller.spec.ts` (Teste 2 rejeição com `not.toHaveBeenCalled()`) |
 | **26** | Testes HTTP executados e aprovados | **Confirmado** | `2 passed` no Vitest |
 | **27** | Teste unitário anterior do serviço/entidade reexecutado | **Confirmado** | `part.entity.spec.ts` aprovado (`1 passed`) |
-| **28** | Suíte completa aplicável executada sem regressões | **Confirmado** | 11 testes aprovados no total (`11 passed`, zero falhas) |
+| **28** | Suíte completa aplicável executada sem regressões | **Confirmado** | 12 testes aprovados no total (`12 passed`, zero falhas) |
 | **29** | Alterações inspecionadas com `git status` e `git diff` | **Confirmado** | Working tree inspecionado e verificado |
-| **30** | Commit semântico realizado | **Confirmado** | Commit semântico atômico referenciando a Sub-Issue `#10` |
-| **31** | Branch publicada no repositório remoto | **Confirmado** | Push realizado para `origin/feat/sub-05-http-endpoint` |
+| **30** | Commit semântico realizado | **Confirmado** | `308d8dd` — `feat(parts): implement HTTP boundary POST /parts with validation and tests (ref #10)` |
+| **31** | Branch publicada no repositório remoto | **Confirmado** | `feat/sub-05-http-endpoint` publicada com tracking em `origin/feat/sub-05-http-endpoint` |
 | **32** | Pull Request documentado com cadeia de dependências | **Confirmado** | Minuta completa do PR registrada em `07-07` |
 | **33** | GitHub Project atualizado conforme o estado real | **Confirmado** | SUB-05 movida para `In Review`; Epic mantido em `In Progress` |
 | **34** | Nenhum merge prematuro na `main` realizado | **Confirmado** | Branch `main` preservada e intacta |
@@ -57,7 +57,7 @@
 11. **Requisições HTTP Reais:** Executadas contra servidor NestJS vivo na porta 3333 via HTTP Client.
 12. **Respostas Obtidas:** Cenário válido ➔ `201 Created`; Cenário inválido ➔ `400 Bad Request`.
 13. **Testes HTTP:** Suíte automatizada com Vitest e Supertest validando status e delegação de serviço.
-14. **Resultado da Suíte:** 11 testes aprovados (`11 passed`, 0 falhas) com zero regressões.
+14. **Resultado da Suíte:** 12 testes aprovados (`12 passed`, 0 falhas) com zero regressões.
 15. **Commits:** Registrados com Conventional Commits referenciando a Sub-Issue `#10`.
 16. **Branch:** `feat/sub-05-http-endpoint` ramificada de `feat/sub-01-domain-part`.
 17. **Pull Request:** Minuta gerada documentando a fronteira HTTP e cadeia de dependências.
